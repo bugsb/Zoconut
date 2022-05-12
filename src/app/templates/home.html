@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container mt-2">
+    <div class="container overflow-hidden">
+        <div class="row gy-5">
+            <div class="col-3 ps-0">
+                <div class="p-3  border bg-light">Last two months: {{client_count}}</div>
+            </div>
+            <div class="col-3">
+                <div class="p-3 border bg-light">Appointments: {{appointments_count}}</div>
+            </div>
+            <div class="col-3">
+                <div class="p-3 border bg-light">Basic plan : {{client_basic_info}}</div>
+            </div>
+            <div class="col-3">
+                <div class="p-3 border bg-light">Revenue: {{payments}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-3">
+    <a href="/form" ><button type="button" class="btn btn-success">Add +</button></a>
+    
+</div>
+
+<div class="container mt-3">
+
+    <table id="table" data-toggle="table" data-height="300" data-ajax="ajaxRequest1" data-pagination="false">
+        <thead>
+            <tr>
+                <th data-field="id">ID</th>
+                <th data-field="name"> Name</th>
+                <th data-field="number">Primary Number</th>
+            </tr>
+        </thead>
+    </table>
+    <script>
+        // your custom ajax request here
+        function ajaxRequest1(params) {
+            var url = '/data'
+            $.get(url).then(function (res) {
+                params.success(res)
+
+            })
+
+        }
+    </script>
+</div>
+
+<div class="container mt-3">
+   
+<div class="btn-group">
+    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      Filter Paid/Open
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="/home/open_payments">Open</a></li>
+      <li><a class="dropdown-item" href="/home/paid_payments">Paid</a></li>
+      <li><a class="dropdown-item" href="/home/all_payments">All</a></li>
+    </ul>
+  </div>
+  
+</div>
+
+<div class="container mt-2 mb-3">
+
+    <table id="table" data-toggle="table" data-height="300" data-ajax="ajaxRequest" data-pagination="false">
+        <thead>
+            <tr>
+                <th data-field="user">ID</th>
+                <th data-field="amount">Amount</th>
+                <th data-field="date">Paid On</th>
+                <th data-field="status">Status</th>
+            </tr>
+        </thead>
+    </table>
+    <script>
+        // your custom ajax request here
+        function ajaxRequest(params) {
+            var url = '/{{url}}/'
+            $.get(url).then(function (res) {
+                params.success(res)
+
+            })
+
+        }
+    </script>
+</div>
+{% endblock %}
