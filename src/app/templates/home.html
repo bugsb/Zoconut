@@ -22,12 +22,12 @@
 </div>
 
 <div class="container mt-3">
-    <a href="/form" ><button type="button" class="btn btn-success">Add +</button></a>
-    
+   
+    <a href="form/" ><button type="button" class="btn btn-success">Add +</button></a>
+    <strong style="align-content: center;">Customers in last two months: </strong>
 </div>
 
 <div class="container mt-3">
-
     <table id="table" data-toggle="table" data-height="300" data-ajax="ajaxRequest1" data-pagination="false">
         <thead>
             <tr>
@@ -40,12 +40,10 @@
     <script>
         // your custom ajax request here
         function ajaxRequest1(params) {
-            var url = '/data'
+            var url = '/app/clients_added/{{id}}'
             $.get(url).then(function (res) {
                 params.success(res)
-
             })
-
         }
     </script>
 </div>
@@ -56,10 +54,13 @@
     <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
       Filter Paid/Open
     </button>
+    <div class="container">
+        <strong>Payments status for last two months</strong>
+    </div>
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="/home/open_payments">Open</a></li>
-      <li><a class="dropdown-item" href="/home/paid_payments">Paid</a></li>
-      <li><a class="dropdown-item" href="/home/all_payments">All</a></li>
+      <li><a class="dropdown-item" href="open_payments?user={{id}}">Open</a></li>
+      <li><a class="dropdown-item" href="paid_payments?user={{id}}">Paid</a></li>
+      <li><a class="dropdown-item" href="all_payments?user={{id}}">All</a></li>
     </ul>
   </div>
   
@@ -80,12 +81,11 @@
     <script>
         // your custom ajax request here
         function ajaxRequest(params) {
-            var url = '/{{url}}/'
+            var url = '/app/{{url}}?user={{id}}'
             $.get(url).then(function (res) {
                 params.success(res)
 
             })
-
         }
     </script>
 </div>

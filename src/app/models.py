@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-# Create your models here.
+
 class AccountHolder(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
@@ -8,6 +8,7 @@ class AccountHolder(models.Model):
     country_code = models.IntegerField()
     timestamp = models.DateTimeField(auto_now_add=True)
     login_status = models.BooleanField()
+
     def __str__(self):
         return self.name
 
@@ -19,6 +20,7 @@ class Client(models.Model):
     medical_info_status = models.BooleanField()
     filtering_id = models.ForeignKey(to=AccountHolder, on_delete=models.CASCADE)
     timestamp =models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
         return self.name
 
@@ -34,6 +36,7 @@ class Appointment(models.Model):
         ('canceled','Canceled')
         )
     )
+
     payment_date = models.DateField()
     def __str__(self):
         return self.user.name
@@ -52,7 +55,8 @@ class Payment(models.Model):
         ('open','Open')
         )
     )
-    payment_date = models.DateField()
+    payment_date = models.DateField(default=None)
+
     def __str__(self):
-        return self.user.name
+        return str(self.filtering_id)
 

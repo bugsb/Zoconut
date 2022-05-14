@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h1>Login</h1>
+<div class="container"v style="max-width: 80vh; margin-top: 20vh;">
+  <div class="container">
+    {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{message}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+        
+      {% endfor %}
+      {% endif %}
+  </div>
+    <form action="" method="post" autocomplete="off">
+      {% csrf_token %}
+        <div class="mb-3">
+          <label for="UserIdInputEmail1" class="form-label">User Id</label>
+          <input type="text" autocomplete="off"  class="form-control" name="username" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>
+{% endblock %}

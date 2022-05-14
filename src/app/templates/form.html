@@ -1,13 +1,11 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
 {% block body %}
 
 <div class="container">
 
-    <form action="/submit/" method="post">
+    <form action="submit/{{user.id}}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-
     <input type="submit">
 </form>
 
