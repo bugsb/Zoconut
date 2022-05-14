@@ -5,8 +5,10 @@ from django.views.generic import TemplateView
 from django.contrib.auth.models import User
 from .helper import parse_payment_data,parse_client_data
 from .forms import ClientForm
+from django.contrib.auth.decorators import login_required
 from .models import Client,Payment
 
+@login_required(login_url='')
 def home_view(request,url):
     context = {
         'url':url,
@@ -42,7 +44,7 @@ def paid_payments(request):
 def open_payments(request):
     user_id = request.GET.get('user')
     filter_date = datetime.today() - timedelta(days=60)
-    data = Payment.objects.all().select_related('filtering_id').filter(filtering_id__user__id=user_id,payment_date__gt=filter_date,status='open')
+    data = Payment.objects.all().select_related('filtering_id').filter(filtering_id__user__id=user_id,filtering_id__timestamp__gt=filter_date,status='open')
     response = parse_payment_data(data)
     return JsonResponse(response,safe=False)
 
