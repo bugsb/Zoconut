@@ -55,7 +55,7 @@ class Payment(models.Model):
         ('open','Open')
         )
     )
-    payment_date = models.DateField(default=None)
+    payment_date = models.DateField(null=True,blank=True)
 
     def __str__(self):
         return str(self.filtering_id)

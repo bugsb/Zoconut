@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% block body %}
 
-<div class="container">
+<div class="container d-flex justify-content-center">
 
-    <form action="submit/{{user.id}}" method="post">
+    <form action="submit/{{user.id}}" class="form" method="post">
+        <div class="btn btn-primary mb-3 back-button"><a href="/app/home/all_payments?user={{user.id}}" >&#8592</a></div>
         {% csrf_token %}
         {{ form.as_p }}
     <input type="submit">

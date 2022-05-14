@@ -3,28 +3,28 @@
 {% block body %}
 
 <div class="container mt-2">
-    <div class="container overflow-hidden">
+    <div class="container overflow-hidden p-4 mb-5">
         <div class="row gy-5">
-            <div class="col-3 ps-0">
-                <div class="p-3  border bg-light">Last two months: {{client_count}}</div>
+            <div class="col-3 ps-0 ">
+                <div class="p-3  custom-card">Last two months: {{client_count}}</div>
             </div>
             <div class="col-3">
-                <div class="p-3 border bg-light">Appointments: {{appointments_count}}</div>
+                <div class="p-3 custom-card">Appointments: {{appointments_count}}</div>
             </div>
             <div class="col-3">
-                <div class="p-3 border bg-light">Basic plan : {{client_basic_info}}</div>
+                <div class="p-3 custom-card ">Basic plan : {{client_basic_info}}</div>
             </div>
             <div class="col-3">
-                <div class="p-3 border bg-light">Revenue: {{payments}}</div>
+                <div class="p-3 custom-card">Revenue: {{payments}}</div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container mt-3">
-   
-    <a href="form/" ><button type="button" class="btn btn-success">Add +</button></a>
+<div class="container mt-3 d-flex justify-content-between">
     <strong style="align-content: center;">Customers in last two months: </strong>
+    <a href="form/" ><button type="button" class="btn btn-style">+ Add</button></a>
+  
 </div>
 
 <div class="container mt-3">
@@ -48,20 +48,24 @@
     </script>
 </div>
 
-<div class="container mt-3">
+<div class="container mt-5 ">
    
-<div class="btn-group">
-    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-      Filter Paid/Open
-    </button>
+<div class="btn-group d-flex justify-content-between">
     <div class="container">
         <strong>Payments status for last two months</strong>
     </div>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="open_payments?user={{id}}">Open</a></li>
-      <li><a class="dropdown-item" href="paid_payments?user={{id}}">Paid</a></li>
-      <li><a class="dropdown-item" href="all_payments?user={{id}}">All</a></li>
-    </ul>
+    <div class="drop-button">
+        <button type="button" class="btn btn-style dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Paid/Open
+          </button>
+      
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="open_payments?user={{id}}">Open</a></li>
+            <li><a class="dropdown-item" href="paid_payments?user={{id}}">Paid</a></li>
+            <li><a class="dropdown-item" href="all_payments?user={{id}}">All</a></li>
+          </ul>
+    </div>
+
   </div>
   
 </div>

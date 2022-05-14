@@ -1,0 +1,65 @@
+body{
+    overflow-x: hidden ;
+}
+
+.custom-card{
+    border: none;
+    box-shadow: 2px 2px 20px -10px rgb(138, 138, 138);
+    border-radius: 10px;
+}
+.nav-color{
+    background-color: #343a40 ;
+    color: white;
+}
+.navbar-brand, .nav-link {
+    color: white !important;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
+    width: 40%;
+}
+.form > p{
+
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+.form > p > input {
+    width: 100%;
+}
+.form > p > input[type='checkbox']{
+    width: auto;
+}
+.form  input[type='submit']{
+    background: #157347 ;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+.form  input[type='submit']:hover{
+    background: #1ca062 ;
+
+}
+.back-button
+{
+    width: 40px;
+    background-color: #343a40 !important;
+}
+.back-button > a{
+    color: white !important;
+    text-decoration: none;
+}
+.btn-style{
+    background-color: #343a40 ;
+    color: white;
+}
+.btn-style:hover{
+    background-color: #6d6d6d ;
+    color: rgb(238, 238, 238);
+}
