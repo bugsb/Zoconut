@@ -37,26 +37,34 @@ class FormView(TemplateView):
 def paid_payments(request):
     user_id = request.GET.get('user')
     filter_date = datetime.today() - timedelta(days=60)
-    data = Payment.objects.all().select_related('filtering_id').filter(filtering_id__user__id=user_id,payment_date__gt=filter_date,status='paid')
+    data = Payment.objects.all().select_related('filtering_id').filter(
+        filtering_id__user__id=user_id,payment_date__gt=filter_date,status='paid')
+
     response = parse_payment_data(data)
     return JsonResponse(response,safe=False)
 
 def open_payments(request):
     user_id = request.GET.get('user')
     filter_date = datetime.today() - timedelta(days=60)
-    data = Payment.objects.all().select_related('filtering_id').filter(filtering_id__user__id=user_id,filtering_id__timestamp__gt=filter_date,status='open')
+    data = Payment.objects.all().select_related('filtering_id').filter(
+        filtering_id__user__id=user_id,filtering_id__timestamp__gt=filter_date,status='open')
+
     response = parse_payment_data(data)
     return JsonResponse(response,safe=False)
 
 def all_payments(request):
     user_id = request.GET.get('user')
     filter_date = datetime.today() - timedelta(days=60)
-    data = Payment.objects.all().select_related('filtering_id').filter(filtering_id__user__id=user_id)
+    data = Payment.objects.all().select_related('filtering_id').filter(
+        filtering_id__user__id=user_id)
+
     response = parse_payment_data(data)
     return JsonResponse(response,safe=False)
 
-def clients_added(r,user_id):
+def clients_added(request,user_id):
     filter_date = datetime.today() - timedelta(days=60)
-    data = Client.objects.all().select_related('filtering_id').filter(timestamp__gt=filter_date,filtering_id__user__id=user_id)
+    data = Client.objects.all().select_related('filtering_id').filter(
+        timestamp__gt=filter_date,filtering_id__user__id=user_id)
+        
     data = parse_client_data(data)
     return JsonResponse(data,safe=False)
